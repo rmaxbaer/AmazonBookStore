@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IQueryable<Book>
+
+<header>
+    <h1>Welcome to Bart's Books</h1>
+</header>
+
+
+
+<div>
+    <table style="width:100%" class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>ISBN</th>
+                <th>Classification</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <!--For each book, make a row that has all of the data for the table-->
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Title</td>
+            <td>@x.GetName()</td>
+            <td>@x.Publisher</td>
+            <td>@x.ISBN</td>
+            <td>@x.Classification</td>
+            <td>@x.Category</td>
+            <td>$@x.Price</td>
+        </tr>
+
+    }
+    </table>
+</div>
+
+
