@@ -134,7 +134,7 @@ namespace Amazon.Models
                      {
                          Title = "The Virgin Way",
                          AuthorFirstName = "Richard",
-                         AuthorMiddleName = "", // or should this be null?
+                         AuthorMiddleName = "", // or should this be null
                          AuthorLastName = "Branson",
                          Publisher = "Portfolio",
                          ISBN = "978-1591847984",
