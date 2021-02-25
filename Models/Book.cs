@@ -28,6 +28,8 @@ namespace Amazon.Models
         public string  Category { get; set; }
         [Required]
         public decimal Price { get; set; }
+        [Required]
+        public int NumPages { get; set; }
 
         //retrieves the name of the author with correct spacing whether or not there is a middle name
         public string GetName()

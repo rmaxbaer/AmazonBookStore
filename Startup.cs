@@ -57,12 +57,16 @@ namespace Amazon
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    "pagination",
+                    //"Books/{page}", this is the way from the videos
+                    "P{page}", //This is the format that is asked of us for assignment 6
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapDefaultControllerRoute();
             });
 
             //This line added our original seed data. after running, that data is in our database and we don't need to seed again
-            //SeedData.EnsurePopulated(app);
+            SeedData.EnsurePopulated(app);
         }
     }
 }

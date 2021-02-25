@@ -36,7 +36,8 @@ namespace Amazon.Models
                         ISBN = "978-0451419439",
                         Classification = "Fiction",
                         Category = "Classic",
-                        Price = 9.95m
+                        Price = 9.95m,
+                        NumPages = 1488
                     },
 
                     new Book
@@ -49,7 +50,8 @@ namespace Amazon.Models
                         ISBN = "978-0743270755",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 14.58m
+                        Price = 14.58m,
+                        NumPages = 944
                     },
 
                     new Book
@@ -62,7 +64,8 @@ namespace Amazon.Models
                         ISBN = "978-0553384611",
                         Classification = "Non-Fiction",
                         Category = "Biography",
-                        Price = 21.54m
+                        Price = 21.54m,
+                        NumPages = 832
                     },
 
                      new Book
@@ -75,7 +78,8 @@ namespace Amazon.Models
                          ISBN = "978-0812981254",
                          Classification = "Non-Fiction",
                          Category = "Biography",
-                         Price = 11.61m
+                         Price = 11.61m,
+                         NumPages = 864
                      },
 
                     new Book
@@ -88,7 +92,8 @@ namespace Amazon.Models
                         ISBN = "978-0812974492",
                         Classification = "Non-Fiction",
                         Category = "Historical",
-                        Price = 13.33m
+                        Price = 13.33m,
+                        NumPages = 528
                     },
 
                      new Book
@@ -101,7 +106,8 @@ namespace Amazon.Models
                          ISBN = "978-0804171281",
                          Classification = "Fiction",
                          Category = "Historical Fiction",
-                         Price = 15.95m
+                         Price = 15.95m,
+                         NumPages = 288
                      },
                     
                      new Book
@@ -114,7 +120,8 @@ namespace Amazon.Models
                          ISBN = "978-1455586691",
                          Classification = "Non-Fiction",
                          Category = "Self-Help",
-                         Price = 14.99m
+                         Price = 14.99m,
+                         NumPages = 304
                      },
 
                      new Book
@@ -127,7 +134,8 @@ namespace Amazon.Models
                          ISBN = "978-1455523023",
                          Classification = "Non-Fiction",
                          Category = "Self-Help",
-                         Price = 21.66m
+                         Price = 21.66m,
+                         NumPages = 240
                      },
 
                      new Book
@@ -140,7 +148,8 @@ namespace Amazon.Models
                          ISBN = "978-1591847984",
                          Classification = "Non-Fiction",
                          Category = "Business",
-                         Price = 29.16m
+                         Price = 29.16m,
+                         NumPages = 400
                      },
 
                      new Book
@@ -153,10 +162,51 @@ namespace Amazon.Models
                          ISBN = "978-0553393613",
                          Classification = "Fiction",
                          Category = "Thrillers",
-                         Price =15.03m
-                     }
+                         Price = 15.03m,
+                         NumPages = 642
+                     }, 
+                     
+                     new Book
+                     {
+                         Title = "Where the Wild Things Are",
+                         AuthorFirstName = "Maurice",
+                         AuthorMiddleName = "",
+                         AuthorLastName = "Sendak",
+                         Publisher = "HarperCollins",
+                         ISBN = "978-0061656842",
+                         Classification = "Fiction",
+                         Category = "Action and Adventure",
+                         Price = 4.89m,
+                         NumPages = 38
+                     },
 
+                     new Book
+                     {
+                         Title = "Hop on Pop",
+                         AuthorFirstName = "Dr.",
+                         AuthorMiddleName = "",
+                         AuthorLastName = "Seuss",
+                         Publisher = "Random House",
+                         ISBN = "978-0001713093",
+                         Classification = "Fiction",
+                         Category = "Children's Literature",
+                         Price = 3.50m,
+                         NumPages = 24
+                     },
 
+                      new Book
+                      {
+                          Title = "Where the Sidewalk Ends",
+                          AuthorFirstName = "Shell",
+                          AuthorMiddleName = "",
+                          AuthorLastName = "Silverstein",
+                          Publisher = "HarperCollins",
+                          ISBN = "978-0060256678",
+                          Classification = "Fiction",
+                          Category = "Poetry",
+                          Price = 5.06m,
+                          NumPages = 166
+                      }
 
                 );
 

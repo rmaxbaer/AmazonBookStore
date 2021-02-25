@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Amazon.Migrations
 {
     [DbContext(typeof(AmazonDbContext))]
-    [Migration("20210218215641_Initial")]
+    [Migration("20210224183600_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

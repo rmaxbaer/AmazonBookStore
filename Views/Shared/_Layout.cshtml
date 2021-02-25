@@ -4,12 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Amazon</title>
+    <!--bring in the bootstrap file-->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-   <div>
-       @RenderBody()
+   <div class="bg-dark text-white p-2">
+       <span>AMAZON BOOK STORE</span>
    </div>
+    @RenderBody()
 </body>
 </html>

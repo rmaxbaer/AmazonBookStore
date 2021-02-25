@@ -2,15 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model IQueryable<Book>
+@model BookListViewModel
 
 <header>
-    <h1>Welcome to Bart's Books</h1>
+    <h1>Welcome to Amazon Book Store</h1>
 </header>
 
 
-
-<div>
+<!--these bootstrap commands in my table div make the table responsive to the screen size and adds nice borders between rows and columns-->
+<div class="table-responsive table-bordered">
     <table style="width:100%" class="table table-hover">
         <thead class="thead-dark">
             <tr>
@@ -20,24 +20,57 @@
                 <th>ISBN</th>
                 <th>Classification</th>
                 <th>Category</th>
+                <th>Pages </th>
                 <th>Price</th>
             </tr>
         </thead>
-        <!--For each book, make a row that has all of the data for the table-->
-    @foreach (var x in Model)
-    {
-        <tr>
-            <td>@x.Title</td>
-            <td>@x.GetName()</td>
-            <td>@x.Publisher</td>
-            <td>@x.ISBN</td>
-            <td>@x.Classification</td>
-            <td>@x.Category</td>
-            <td>$@x.Price</td>
-        </tr>
+        <tbody>
+            <!--For each book, make a row that has all of the data for the table-->
+            @foreach (var x in Model.Books)
+            {
+                <tr>
+                    <td>@x.Title</td>
+                    <td>@x.GetName()</td>
+                    <td>@x.Publisher</td>
+                    <td>@x.ISBN</td>
+                    <td>@x.Classification</td>
+                    <td>@x.Category</td>
+                    <td>@x.NumPages</td>
+                    <td>$@x.Price</td>
+                
+                </tr>
+            }
 
-    }
+        </tbody>
+        <tfoot  class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>ISBN</th>
+                <th>Classification</th>
+                <th>Category</th>
+                <th>Pages </th>
+                <th>Price</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
+
+<!--this enables pagination and the tag helper -->
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark"
+     page-class-selected="btn-primary"
+     class="btn-group pull-right m-1"></div>
+
+<!-- here is a quote I found on BYU's humanities website-->
+<figure class="text-center">
+    <blockquote class="blockquote">
+        <p>If you think reading is dumb, you got another thing comin'.</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+        Martha Stewart in <cite title="Source Title">No Country for Old Men</cite>
+    </figcaption>
+</figure>
 
 

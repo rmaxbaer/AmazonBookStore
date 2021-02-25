@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.Models.ViewModels;
 
 namespace Amazon.Controllers
 {
@@ -14,6 +15,7 @@ namespace Amazon.Controllers
         private readonly ILogger<HomeController> _logger;
 
         private IAmazonRepository _repository;
+        public int PageSize = 5;
 
         public HomeController(ILogger<HomeController> logger, IAmazonRepository repository)
         {
@@ -22,10 +24,24 @@ namespace Amazon.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
             //pass the books from the repository to the view
-            return View(_repository.Books);
+            return View(new BookListViewModel
+            {
+                Books = _repository.Books
+                        .OrderBy(p => p.BookId)
+                        .Skip((page - 1) * PageSize)
+                        .Take(PageSize)
+                    ,
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalNumItems = _repository.Books.Count()
+                }
+
+            });              
         }
 
         public IActionResult Privacy()
