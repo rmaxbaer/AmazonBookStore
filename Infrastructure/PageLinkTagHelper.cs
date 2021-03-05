@@ -26,6 +26,10 @@ namespace Amazon.Infrastructure
         public ViewContext ViewContext { get; set; }
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
+        //anytime someone adds "page-url-" it will be stored in this dictionary since they all have that common prefix
+        [HtmlAttributeName(DictionaryAttributePrefix ="page-url-")]
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
+
         
         //This lets us use these tag helpers
         public bool PageClassesEnabled { get; set; } = false;
@@ -42,8 +46,9 @@ namespace Amazon.Infrastructure
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
-                tag.InnerHtml.Append(i.ToString());
+
+                PageUrlValues["page"] = i;
+                tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
 
                 if (PageClassesEnabled)
                 {
@@ -52,6 +57,7 @@ namespace Amazon.Infrastructure
                 }
                 
                 //put that tag onto the html we have
+                tag.InnerHtml.Append(i.ToString());
                 result.InnerHtml.AppendHtml(tag);
             }
 

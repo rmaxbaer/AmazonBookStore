@@ -10,6 +10,7 @@ namespace Amazon.Models.ViewModels
 
         public IEnumerable<Book> Books { get; set; }
         public PagingInfo PagingInfo { get; set; }
+        public string CurrentCategory { get; set; } // These get set in the controller
 
     }
 }

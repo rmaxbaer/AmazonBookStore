@@ -28,17 +28,8 @@
             <!--For each book, make a row that has all of the data for the table-->
             @foreach (var x in Model.Books)
             {
-                <tr>
-                    <td>@x.Title</td>
-                    <td>@x.GetName()</td>
-                    <td>@x.Publisher</td>
-                    <td>@x.ISBN</td>
-                    <td>@x.Classification</td>
-                    <td>@x.Category</td>
-                    <td>@x.NumPages</td>
-                    <td>$@x.Price</td>
-                
-                </tr>
+                <!--This goes to the BookSummary shared view and passes in each book-->
+                <partial name="BookSummary" model="x"/>
             }
 
         </tbody>
@@ -60,7 +51,7 @@
 <!--this enables pagination and the tag helper -->
 <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn"
      page-class-normal="btn-outline-dark"
-     page-class-selected="btn-primary"
+     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
      class="btn-group pull-right m-1"></div>
 
 <!-- here is a quote I found on BYU's humanities website-->

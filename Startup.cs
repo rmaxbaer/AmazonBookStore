@@ -28,7 +28,7 @@ namespace Amazon
             services.AddControllersWithViews();
             services.AddDbContext<AmazonDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:AmazonBookStoreConnection"]);
+                options.UseSqlite(Configuration["ConnectionStrings:AmazonBookStoreConnection"]);
             });
 
             services.AddScoped<IAmazonRepository, EFAmazonRepository>();
@@ -54,12 +54,29 @@ namespace Amazon
 
             app.UseAuthorization();
 
+            //These help us control the URLS
+            // They BOTH make it easy to type URLs and make it looks good when someone navigates there
+            //It goes through each of these until it finds one
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("catpage",
+                    //The curly braces denote that it's an actual object, not just a word in the url
+                    "{category}/{page:int}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("page",
+                    "Books/{page:int}",
+                    new {Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("category",
+                    "{category}",
+                    new {Controller = "Home", action = "Index", page = 1});
+
+                //default endpoint which is called if they don't do anything - 
                 endpoints.MapControllerRoute(
-                    "pagination",
+                    "pagination", //This is what is typed or inputted
                     //"Books/{page}", this is the way from the videos
-                    "P{page}", //This is the format that is asked of us for assignment 6
+                    "P{page}", //This is the format that is asked of us for assignment 6 -- this is the output
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
