@@ -1,6 +1,7 @@
 using Amazon.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,19 @@ namespace Amazon
             });
 
             services.AddScoped<IAmazonRepository, EFAmazonRepository>();
+
+            services.AddRazorPages();
+
+            //This gets the memory to stick- it helps someone to put stuff in a cart and have it stay there
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            //CH9: storage services
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +64,8 @@ namespace Amazon
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -61,11 +77,11 @@ namespace Amazon
             {
                 endpoints.MapControllerRoute("catpage",
                     //The curly braces denote that it's an actual object, not just a word in the url
-                    "{category}/{page:int}",
+                    "{category}/{pageNum:int}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute("page",
-                    "Books/{page:int}",
+                    "Books/{pageNum:int}",
                     new {Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute("category",
@@ -75,11 +91,13 @@ namespace Amazon
                 //default endpoint which is called if they don't do anything - 
                 endpoints.MapControllerRoute(
                     "pagination", //This is what is typed or inputted
-                    //"Books/{page}", this is the way from the videos
-                    "P{page}", //This is the format that is asked of us for assignment 6 -- this is the output
+                                  //"Books/{page}", this is the way from the videos
+                    "P{pageNum}", //This is the format that is asked of us for assignment 6 -- this is the output
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
 
             //This line added our original seed data. after running, that data is in our database and we don't need to seed again

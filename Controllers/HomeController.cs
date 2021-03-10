@@ -24,7 +24,7 @@ namespace Amazon.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index(string category, int page = 1)
+        public IActionResult Index(string category, int pageNum = 1)
         {
             //pass the books from the repository to the view
             //This is the part that goes out to the repo and gets the data so that the whole program can use it
@@ -35,12 +35,12 @@ namespace Amazon.Controllers
                         //SQL (Lite? Linq?) this queries our data
                         .Where(p => category == null || p.Category == category)
                         .OrderBy(p => p.BookId)
-                        .Skip((page - 1) * PageSize)
+                        .Skip((pageNum - 1) * PageSize)
                         .Take(PageSize)
                     ,
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = page,
+                    CurrentPage = pageNum,
                     ItemsPerPage = PageSize,
                     //If category is null, base it off of the total count - if not, base it off of the number of books in the given category
                     TotalNumItems = category == null ? _repository.Books.Count() :

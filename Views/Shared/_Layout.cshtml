@@ -9,22 +9,34 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <!--cartwidget-->
+    <div class="bg-dark text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">AMAZON BOOK STORE</div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div>
 
-       <div class="bg-dark text-white p-2">
-           <span class="navbar-brand ml-2">AMAZON BOOK STORE</span>
-       </div>
+        @*<div class="bg-dark text-white p-2">
+            <span class="navbar-brand ml-2">AMAZON BOOK STORE</span>
+        </div>*@
         <div class="row m-1 p-1">
             <div id="blah" class="col-3">
                 <h1>All The Books You Could Ever Want</h1>
                 <!--This brings in our NavigationMenuViewComponent -- see the vc?-->
-                <vc:navigation-menu/>
+                <vc:navigation-menu />
             </div>
             <div class="col-9">
                 @RenderBody()
             </div>
         </div>
-    
+
     </div>
 
 </body>
